@@ -39,7 +39,8 @@ def record_audio(freq= 44100, max_duration=300):
     recording = recording[:audio_len]
 
     # Convert the NumPy array to audio file
-    filename = os.path.join(output_folder, "recorded_audio.wav")
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    filename = os.path.join(output_folder, f"audio_{timestamp}.wav")
     wv.write(filename, recording, frequency, sampwidth=2)
 
     return filename
