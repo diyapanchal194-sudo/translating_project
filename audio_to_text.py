@@ -1,13 +1,17 @@
 import os
+import glob
 from groq import Groq
 
+def get_latest_audio_file(folder="audio"):
+    files = glob.glob(os.path.join(folder, "*.wav"))
+    if not files:
+        raise FileNotFoundError("No audio files found in the folder.")
+    return max(files, key=os.path.getctime)
 
 def transcribe_audio():
     # Initialize the Groq client
     client = Groq()
-
-    # Specify the path to the audio file
-    filename = os.path.dirname(__file__) + "/audio/recorded_audio.wav"
+    filename = get_latest_audio_file()  # Get the latest audio file from the "audio" folder
 
 # Open the audio file
     with open(filename, "rb") as file:
@@ -25,4 +29,6 @@ def transcribe_audio():
         f.write(transcription_text)
 
     return transcription_text
+
+
 
