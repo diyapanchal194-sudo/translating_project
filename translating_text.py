@@ -14,5 +14,5 @@ def translate_text():
     with open("translated.txt", "w") as f:
         f.write(translated)
 
-    return translate_text
+    return translated
 
