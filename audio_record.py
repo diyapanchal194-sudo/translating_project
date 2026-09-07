@@ -46,5 +46,3 @@ def record_audio(freq= 44100, max_duration=300):
 
     return filename
 
-
-
